@@ -1,0 +1,51 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+PREFIX mfcr: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
+PREFIX govr: <http://linked.opendata.cz/ontology/domain/seznam.gov.cz/rejstriky/>
+
+PREFIX resource: <{{"param": "resource"}}>
+
+CONSTRUCT {
+  resource: a mfcr:UcetniJednotka ;
+    govr:smlouva ?smlouva .
+
+  ?smlouva skos:notation ?smlouvaNotation ;
+    dcterms:issued ?smlouvaIssued ;
+    dcterms:subject ?smlouvaSubject ;
+    gr:priceSpecification ?smlouvaPrice .
+  
+  ?smlouvaPrice gr:hasCurrency ?smlouvaPriceCurrency ;
+    gr:valueAddedTaxIncluded ?smlouvaPriceVATIncluded ;
+    gr:hasCurrencyValue ?smlouvaPriceCurrencyValue .
+
+} WHERE {
+
+  {
+    SELECT ?smlouva ?smlouvaIssued
+    WHERE {
+      ?ujv a mfcr:UcetniJednotka ;
+        mfcr:versionOf resource: ;
+        mfcr:validTo ?ujValidTo ;
+        owl:sameAs ?be .
+      FILTER (NOW() < ?ujValidTo)
+    
+      ?be govr:smlouva ?smlouva .
+
+      ?smlouva dcterms:issued ?smlouvaIssued .
+    }
+	ORDER BY DESC(?smlouvaIssued)
+	LIMIT {{"param" : "limit", "default":"10"}}
+	OFFSET {{"param" : "offset", "default":"0"}}
+  }
+
+  ?smlouva skos:notation ?smlouvaNotation ;
+    dcterms:subject ?smlouvaSubject ;
+    gr:hasPriceSpecification ?smlouvaPrice .
+  
+  ?smlouvaPrice gr:hasCurrency ?smlouvaPriceCurrency ;
+    gr:valueAddedTaxIncluded ?smlouvaPriceVATIncluded ;
+    gr:hasCurrencyValue ?smlouvaPriceCurrencyValue .
+  
+}
+
+

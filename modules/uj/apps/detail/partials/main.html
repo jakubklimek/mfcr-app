@@ -1,0 +1,26 @@
+<div ng-controller="UcetniJednotkaController" main-app>
+    <div app-bar>
+        <div class="navbar-brand">
+            Účetní jednotka {{ucetniJednotka.prefLabel}}
+        </div>
+    </div>
+
+    <div ng-hide="isLoading">
+        <h3>Adresa</h3>
+		<p>{{ucetniJednotka.adresa}}</p>
+        <h3>Druh</h3>
+        <ul>
+            <li ng-repeat="d in ucetniJednotka.druh">
+                {{d.prefLabel | join}}
+            </li>
+        </ul>
+        <h3>Poddruh</h3>
+        <ul>
+            <li ng-repeat="pd in ucetniJednotka.poddruh">
+                <a click type="mfcr:PoddruhUcetniJednotky" resource="{{pd['@id']}}">{{pd.prefLabel | join}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-show="isLoading" spinner-bar></div>
+</div>

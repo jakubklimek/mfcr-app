@@ -1,0 +1,5 @@
+{
+    "title": "Seznam smluv",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["sidebar"]
+}

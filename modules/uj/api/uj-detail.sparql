@@ -1,0 +1,32 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+PREFIX mfcr: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
+
+PREFIX resource: <{{"param": "resource"}}>
+
+CONSTRUCT {
+  resource: a mfcr:UcetniJednotka ;
+    skos:prefLabel ?ujName ;
+    mfcr:druhUcetniJednotky ?ujDruh;
+    mfcr:poddruhUcetniJednotky ?ujPodDruh ;
+    mfcr:adresa ?ujAdresa .
+
+  ?ujDruh skos:prefLabel ?ujDruhLabel .
+
+  ?ujPodDruh skos:prefLabel ?ujPodDruhLabel .
+} WHERE {
+
+  ?ujv a mfcr:UcetniJednotka ;
+    mfcr:versionOf resource: ;
+    mfcr:validTo ?ujValidTo ;
+    skos:prefLabel ?ujName ;
+    mfcr:druhUcetniJednotky ?ujDruh;
+    mfcr:poddruhUcetniJednotky ?ujPodDruh ;
+    mfcr:adresa ?ujAdresa .
+
+  ?ujDruh skos:prefLabel ?ujDruhLabel .
+
+  ?ujPodDruh skos:prefLabel ?ujPodDruhLabel .
+
+  FILTER (NOW() < ?ujValidTo)
+}

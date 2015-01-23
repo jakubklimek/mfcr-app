@@ -1,0 +1,20 @@
+{
+    "title": "Účetní jednotka",
+    "dependencies": ["core", "search"],
+	"prefixes": {
+        "skos:" : "http://www.w3.org/2004/02/skos/core#",
+        "mfcr:" : "http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/"
+    },
+    "universal-search": [
+        {
+            "datasets": ["http://linked.opendata.cz/resource/dataset/mfcr/ciselniky"],
+            "type" : "mfcr:UcetniJednotka",
+            "property" : "skos:prefLabel",
+            "label" : "Účetní jednotka"
+        }
+    ],
+	"apis": {
+        "uj-detail": { "resource": ""},
+        "seznam-smluv": { "resource": "", "limit": "10", "offset":"0"}
+    }
+}

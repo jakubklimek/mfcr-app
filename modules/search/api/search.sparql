@@ -1,0 +1,27 @@
+{{"param" : "prefixes"}}
+
+CONSTRUCT{
+  ?resource1 rdf:type ?type .
+  ?resource1 <http://TEXT> ?text .
+  ?resource1 <http://LABEL> ?label .
+  ?resource1 <http://SCORE> ?sc .
+}
+
+{{"param" : "from"}}
+
+WHERE {
+  SELECT ?resource1 ?type ?text ?label ?sc
+  WHERE {
+    GRAPH ?graph {
+    	?resource a ?type .
+		?resource <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/versionOf> ?resource1 .
+    	?resource ?property ?text .
+    	?text bif:contains '[__enc "UTF-8"]"{{"param" : "query", "filter" : "EscapeDoubleQuotes"}}"'
+    	OPTION ( SCORE ?sc) .
+    }
+    {{"param" : "values"}}
+  }
+  ORDER BY DESC( ?sc)
+  LIMIT {{"param" : "limit"}}
+  OFFSET {{"param" : "offset"}}
+}
