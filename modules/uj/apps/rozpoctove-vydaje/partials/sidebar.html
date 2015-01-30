@@ -1,0 +1,24 @@
+<div ng-controller="RozpoctoveVydajeController" sidebar-app heading="Rozpočtové výdaje">
+    <!--<div app-bar>
+        <div class="navbar-brand">
+            Rozpočtové výdaje
+        </div>
+    </div>-->
+
+    <div ng-hide="isLoading">
+     <table class="table">
+        <tr>
+            <th>Položka</th>
+            <th>Fiskální období</th>
+            <th>Výsledek</th>
+        </tr>
+        <tr ng-repeat="vydaj in vydaje | orderBy: predicate : reverse">
+            <td nowrap>{{ vydaj['polozka'][0].prefLabel }}</td>
+            <td nowrap>{{ vydaj['refPeriod'].substring(80) }}</td>
+            <td nowrap>{{ vydaj['vysledek'] }}</td>
+        </tr>
+     </table>
+	</div>
+
+    <div ng-show="isLoading" spinner-bar></div>
+</div>

@@ -38,9 +38,11 @@ CONSTRUCT {
 	OFFSET {{"param" : "offset", "default":"0"}}
   }
 
-  ?smlouva skos:notation ?smlouvaNotation ;
+  ?smlouva 
     dcterms:subject ?smlouvaSubject ;
     gr:hasPriceSpecification ?smlouvaPrice .
+  
+  OPTIONAL {?smlouva skos:notation ?smlouvaNotation . }
   
   ?smlouvaPrice gr:hasCurrency ?smlouvaPriceCurrency ;
     gr:valueAddedTaxIncluded ?smlouvaPriceVATIncluded ;

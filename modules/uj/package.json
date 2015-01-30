@@ -15,6 +15,8 @@
     ],
 	"apis": {
         "uj-detail": { "resource": ""},
-        "seznam-smluv": { "resource": "", "limit": "10", "offset":"0"}
+        "seznam-smluv": { "resource": "", "limit": "10", "offset":"0"},
+		"rozpoctove-vydaje": { "resource": ""},
+		"uradovny": { "resource": ""}
     }
 }

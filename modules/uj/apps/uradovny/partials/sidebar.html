@@ -1,0 +1,25 @@
+<div ng-controller="UradovnyController" sidebar-app heading="Úřadovny">
+
+    <div ng-hide="isLoading">
+     <table class="table">
+        <tr>
+            <th>Adresa</th>
+            <th>Výtah</th>
+            <th>Podlaží</th>
+            <th>Otevírací dny</th>
+        </tr>
+        <tr ng-repeat="uradovna in uradovny | orderBy: predicate : reverse">
+            <td nowrap>{{ uradovna.address }}</td>
+            <td nowrap>{{ uradovna.stavebniObjekt[0].vybaveniVytahem[0].prefLabel }}</td>
+            <td nowrap>{{ uradovna.stavebniObjekt[0].pocetPodlazi }}</td>
+            <td nowrap>
+				<span ng-repeat="hodiny in uradovna.openingHoursSpecification">
+					{{hodiny.dayOfWeek.substring(33)}}
+				</span>
+			</td>
+        </tr>
+     </table>
+	</div>
+
+    <div ng-show="isLoading" spinner-bar></div>
+</div>

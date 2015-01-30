@@ -1,0 +1,5 @@
+{
+    "title": "Rozpočtové výdaje",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["sidebar"]
+}

@@ -2,8 +2,8 @@
 
      <table class="table">
         <tr>
-            <th><a ng-click="sortBy('notation')">Notation</a></th>
-            <th><a>PriceVAT</a></th>
+            <th>Notation</th>
+            <th>PriceVAT</th>
         </tr>
         <tr ng-repeat="smlouva in smlouvy | orderBy: predicate : reverse">
             <td nowrap><a click module="uj" application="smlouva-detail" resource="{{ smlouva['@id'] }}">{{ smlouva['notation'] }}</a></td>
@@ -12,8 +12,6 @@
     </table>
 
 	<div datapager source="datasource" target="smlouvy" items-per-page="10" hide-controls="true"></div> 
-
-    <div ng-hide="isLoading">Načítám data</div>
 
     <div ng-show="isLoading" spinner-bar></div>
 </div>

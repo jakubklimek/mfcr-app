@@ -1,0 +1,71 @@
+PREFIX dsd: <http://linked.opendata.cz/resource/domain/mfcr/monitor/dsd/>
+PREFIX cis: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
+
+PREFIX app: <http://linked.opendata.cz/ontology/mfcr/application/>
+
+PREFIX resource: <{{"param": "resource"}}>
+
+CONSTRUCT {
+  _:o app:polozka ?rOblast;
+    app:refPeriod ?rFiskalniObdobi ;
+    app:vysledek ?sumaVysledekZaRok .
+
+  ?rOblast skos:prefLabel ?lOblast .
+  
+} WHERE {
+  VALUES ?rFiskalniObdobi {
+    <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/FiskalniObdobi/2010012>
+    <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/FiskalniObdobi/2011012>
+    <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/FiskalniObdobi/2012012>
+    <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/FiskalniObdobi/2013012>
+    <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/FiskalniObdobi/2014012>
+  }
+  {
+  SELECT ?rOblast ?lOblast ?rFiskalniObdobi (SUM(?vVysledekZaRok) AS ?sumaVysledekZaRok)
+  WHERE {
+    {
+    VALUES ?rOblast {
+      <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/Paragraf/5311>
+      <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/Paragraf/3315>
+      <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/Paragraf/3745>
+      <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/Paragraf/3412>
+      <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/Paragraf/3421>
+      <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/Paragraf/3111>
+    }
+    ?rvUj a cis:UcetniJednotka ;
+      cis:versionOf resource: .
+
+    ?rvOblast
+      cis:versionOf ?rOblast ;
+      skos:prefLabel ?lOblast .
+    
+    ?o dsd:vykazTabulka <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/TabulkaVykazu/51/200> ;
+      dsd:ic ?rvUj ;
+      dsd:fiskalniObdobi ?rFiskalniObdobi ;
+      dsd:paragraf ?rvOblast ;
+      dsd:vysledekZaRok ?vVysledekZaRok .
+    }
+    UNION
+    {
+    VALUES ?rOblast {
+      <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/HierarchieParagrafu/pododdil/služby-sociální-péče>
+    }
+    ?rvUj a cis:UcetniJednotka ;
+      cis:versionOf resource: .
+
+    ?rvOblast
+      cis:pododdil ?rOblast .
+
+    ?rOblast
+      skos:prefLabel ?lOblast .
+    
+    ?o dsd:vykazTabulka <http://linked.opendata.cz/resource/domain/mfcr/monitor/ciselniky/TabulkaVykazu/51/200> ;
+      dsd:ic ?rvUj ;
+      dsd:fiskalniObdobi ?rFiskalniObdobi ;
+      dsd:paragraf ?rvOblast ;
+      dsd:vysledekZaRok ?vVysledekZaRok .
+    }
+  }
+  GROUP BY ?rOblast ?lOblast ?rFiskalniObdobi
+  }
+}

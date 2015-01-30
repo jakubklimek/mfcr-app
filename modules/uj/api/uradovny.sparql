@@ -1,0 +1,84 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX s: <http://schema.org/>
+
+PREFIX ruian: <http://ruian.linked.opendata.cz/ontology/>
+PREFIX ovm: <http://linked.opendata.cz/ontology/domain/seznam.gov.cz/ovm/>
+PREFIX cis: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
+
+PREFIX resource: <{{"param": "resource"}}>
+
+PREFIX app: <http://linked.opendata.cz/mfcr/ontology/application/>
+
+CONSTRUCT {
+  resource: a cis:UcetniJednotka ;
+    skos:prefLabel ?lUjcs ;
+    s:hasPOS ?rUradovna .
+
+  ?rUradovna app:address ?vUradovnaAdresa ;
+    s:geo ?rUradovnaGeoCoordinates ;
+    s:openingHoursSpecification ?rUradovnaOpeningHoursSpecification ;
+    ruian:stavebniObjekt ?rUradovnaStavebniObjekt .
+
+  ?rUradovnaGeoCoordinates
+    s:longitude ?vUradovnaLongitude ;
+    s:latitude ?vUradovnaLatitude .
+
+  ?rUradovnaStavebniObjekt
+    ruian:pocetPodlazi ?vUradovnaStavebniObjektPocetPodlazi ;
+    ruian:vybaveniVytahem ?rUradovnaStavebniObjektVybaveniVytahem .
+  
+  ?rUradovnaStavebniObjektVybaveniVytahem skos:prefLabel ?lUradovnaStavebniObjektVybaveniVytahem .
+
+  ?rUradovnaOpeningHoursSpecification
+    s:dayOfWeek ?rUradovnaOpeningHoursSpecificationDayOfWeek ;
+    s:opens ?vUradovnaOpeningHoursSpecificationOpens ;
+    s:closes ?vUradovnaOpeningHoursSpecificationCloses .
+
+} WHERE {
+
+  ?rvUj a cis:UcetniJednotka ;
+    cis:versionOf resource: ;
+    cis:validTo ?validToUj ;
+    skos:prefLabel ?lUj .
+
+  FILTER (NOW() < ?validToUj )
+
+  ?rvUj owl:sameAs ?rBe .
+
+  ?rOvm ovm:business-entity ?rBe .
+
+  ?rOvm s:hasPOS ?rUradovna .
+
+  ?rUradovna s:address ?rUradovnaAdresa ;
+    s:openingHoursSpecification ?rUradovnaOpeningHoursSpecification .
+
+  ?rUradovnaOpeningHoursSpecification
+    s:dayOfWeek ?rUradovnaOpeningHoursSpecificationDayOfWeek ;
+    s:opens ?vUradovnaOpeningHoursSpecificationOpens ;
+    s:closes ?vUradovnaOpeningHoursSpecificationCloses .
+  
+  ?rUradovnaAdresa rdfs:seeAlso ?rUradovnaAdresniMisto .
+
+  ?rUradovnaAdresniMisto
+    ruian:stavebniObjekt ?rUradovnaStavebniObjekt ;
+    ruian:adresniBod/s:geo ?rUradovnaGeoCoordinates ;
+    ruian:cisloDomovni ?vUradovnaAdresaCisloDomovni ;
+    ruian:ulice/s:name ?vUradovnaAdresaUlice ;
+    ruian:psc ?vUradovnaAdresaPSC ;
+    ruian:ulice/ruian:obec ?rObec .
+
+  ?rObec s:name ?vUradovnaAdresaObec .
+    
+  BIND(CONCAT(?vUradovnaAdresaUlice, " ", ?vUradovnaAdresaCisloDomovni, ", ", ?vUradovnaAdresaObec, ", ", ?vUradovnaAdresaPSC) AS ?vUradovnaAdresa)
+  BIND(strlang(?lUj, "cs") as ?lUjcs)
+  ?rUradovnaStavebniObjekt
+    ruian:pocetPodlazi ?vUradovnaStavebniObjektPocetPodlazi ;
+    ruian:vybaveniVytahem ?rUradovnaStavebniObjektVybaveniVytahem .
+  
+  ?rUradovnaStavebniObjektVybaveniVytahem skos:prefLabel ?lUradovnaStavebniObjektVybaveniVytahem .
+
+  ?rUradovnaGeoCoordinates
+    s:longitude ?vUradovnaLongitude ;
+    s:latitude ?vUradovnaLatitude .
+}
