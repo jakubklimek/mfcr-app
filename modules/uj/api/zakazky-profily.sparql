@@ -1,0 +1,72 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX pc: <http://purl.org/procurement/public-contracts#>
+PREFIX pccz: <http://purl.org/procurement/public-contracts-czech#>
+
+PREFIX mfcr: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
+PREFIX govr: <http://linked.opendata.cz/ontology/domain/seznam.gov.cz/rejstriky/>
+
+PREFIX app: <http://linked.opendata.cz/mfcr/ontology/application/>
+
+PREFIX resource: <{{"param": "resource"}}>
+
+CONSTRUCT {
+
+  ?rZakazka a pc:Contract ;
+    dcterms:title ?tZakazka ;
+    pc:awardedTender ?rAwardedTender ;
+    pccz:status ?statusZakazka .
+
+  ?rAwardedTender a pc:Tender ;
+    pc:supplier ?rSupplier ;
+    app:priceVAT ?vVATPrice ;
+    app:priceNoVAT ?vNoVATPrice .
+
+  ?rSupplier a gr:BusinessEntity ;
+    dcterms:title ?tSupplier .
+
+} WHERE {
+
+  {
+    SELECT DISTINCT ?rZakazka ?tZakazka
+    WHERE {  
+      ?rUjv a mfcr:UcetniJednotka ;
+        mfcr:versionOf resource: ;
+        owl:sameAs ?rBe .
+    
+      ?rZakazka pc:contractingAuthority ?rBe ;
+        dcterms:title ?tZakazka .
+
+    }
+    ORDER BY ?tZakazka
+	LIMIT {{"param" : "limit", "default":"5"}}
+	OFFSET {{"param" : "offset", "default":"0"}}
+  }
+
+  {
+    ?rZakazka pc:awardedTender ?rAwardedTender .
+
+    ?rAwardedTender pc:supplier ?rSupplier .
+    
+    {
+      ?rAwardedTender pc:offeredPrice ?rNoVATPrice .
+      ?rNoVATPrice
+        gr:valueAddedTaxIncluded ?rNoVATPriceIncluded ;
+        gr:hasCurrencyValue ?vNoVATPrice.
+      FILTER(?rNoVATPriceIncluded = 0)
+    } UNION {
+      ?rAwardedTender pc:offeredPrice ?rVATPrice .
+      ?rVATPrice
+        gr:valueAddedTaxIncluded ?rVATPriceIncluded  ;
+        gr:hasCurrencyValue ?vVATPrice.
+      FILTER(?rVATPriceIncluded = 1)
+    }
+
+    ?rSupplier dcterms:title ?tSupplier .
+
+  } UNION {
+    ?rZakazka pccz:status ?statusZakazka .
+  } UNION {
+    ?rZakazka pccz:limit ?limitZakazka .
+  }
+  
+}
