@@ -34,7 +34,7 @@ CONSTRUCT {
       ?smlouva dcterms:issued ?smlouvaIssued .
     }
 	ORDER BY DESC(?smlouvaIssued)
-	LIMIT {{"param" : "limit", "default":"10"}}
+	LIMIT {{"param" : "limit", "default":"5"}}
 	OFFSET {{"param" : "offset", "default":"0"}}
   }
 
