@@ -1,0 +1,21 @@
+<div ng-controller="ProjektyEsfController" sidebar-app heading="Projekty ESF">
+
+     <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Total</th>
+            <th>Allocated</th>
+            <th>Date</th>
+        </tr>
+        <tr ng-repeat="projekt in projekty ">
+            <td nowrap>{{ projekt['title'] }}</a></td>
+            <td nowrap>{{ projekt['totalAmountPaid']}}</td>
+            <td nowrap>{{ projekt['allocationDate']}}</td>
+            <td nowrap>{{ projekt['allocatedPayment']}}</td>
+        </tr>
+    </table>
+
+	<div datapager source="datasource" target="projekty" items-per-page="10" hide-controls="true"></div> 
+
+    <div ng-show="isLoading" spinner-bar></div>
+</div>

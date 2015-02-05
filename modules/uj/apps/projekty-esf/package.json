@@ -1,0 +1,5 @@
+{
+    "title": "Projekty ESF",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["sidebar"]
+}
