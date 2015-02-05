@@ -1,0 +1,5 @@
+{
+    "title": "Zakázky (profily)",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["sidebar"]
+}

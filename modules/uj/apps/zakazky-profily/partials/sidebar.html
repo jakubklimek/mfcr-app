@@ -1,0 +1,21 @@
+<div ng-controller="ZakazkyProfilyController" sidebar-app heading="Zakázky (profily)">
+
+     <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>PriceNoVAT</th>
+            <th>PriceVAT</th>
+            <th>Supplier</th>
+        </tr>
+        <tr ng-repeat="zakazka in zakazky ">
+            <td nowrap>{{ zakazka.title }}</a></td>
+            <td nowrap>{{ zakazka.awardedTender[0].priceNoVAT}}</td>
+            <td nowrap>{{ zakazka.awardedTender[0].priceVAT}}</td>
+            <td nowrap>{{ zakazka.awardedTender[0].supplier[0].title}}</td>
+        </tr>
+    </table>
+
+	<div datapager source="datasource" target="zakazky" items-per-page="10" hide-controls="false"></div> 
+
+    <div ng-show="isLoading" spinner-bar></div>
+</div>
