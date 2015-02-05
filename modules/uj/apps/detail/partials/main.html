@@ -1,5 +1,5 @@
 <div ng-controller="UcetniJednotkaController" main-app>
-    <div app-bar>
+	<div app-bar>
         <div class="navbar-brand">
             Účetní jednotka {{ucetniJednotka.prefLabel}}
         </div>
@@ -8,6 +8,60 @@
     <div ng-hide="isLoading">
         <h3>Adresa</h3>
 		<p>{{ucetniJednotka.adresa}}</p>
+<div id="m" style="height:360px"></div>
+        <form id="form">
+            <p>
+                <label>Hledaná oblast: <input type="text" id="query" value="{{ucetniJednotka.adresa}}" ng-change="geo();"/></label>
+            </p>
+        </form>
+<script type="text/javascript">
+		var m = new SMap(JAK.gel("m"));
+m.addControl(new SMap.Control.Sync());
+m.addDefaultLayer(SMap.DEF_BASE).enable();
+m.addDefaultControls(); 
+
+function odpoved(geocoder) { /* Odpověď */
+    if (!geocoder.getResults()[0].results.length) {
+        //alert("Tohle neznáme.");
+        return;
+    }
+    
+    var vysledky = geocoder.getResults()[0].results;
+    var data = [];
+    while (vysledky.length) { /* Zobrazit všechny výsledky hledání */
+        var item = vysledky.shift()
+
+		var m = new SMap(JAK.gel("m"), item.coords, 13);
+		m.addDefaultLayer(SMap.DEF_BASE).enable();
+		m.addDefaultControls();
+
+		var layer = new SMap.Layer.Marker();
+		m.addLayer(layer);
+		layer.enable();
+
+		var card = new SMap.Card();
+		card.getHeader().innerHTML = "<strong>Nadpis</strong>";
+		card.getBody().innerHTML = "Ahoj, já jsem <em>obsah vizitky</em>!";
+
+		var options = { 
+			title: "Dobré ráno"
+		};
+		var marker = new SMap.Marker(item.coords, "myMarker", options);
+		marker.decorate(SMap.Marker.Feature.Card, card);
+		layer.addMarker(marker);
+		
+		break;
+    }
+};
+
+function geo(e, elm) { 
+	var query = JAK.gel("query").value;
+	new SMap.Geocoder(query, odpoved);
+}; 
+
+JAK.Events.addListener(form, "click", geo); 
+//document.addEventListener("load", geo); 
+	</script>
         <h3>Druh</h3>
         <ul>
             <li ng-repeat="d in ucetniJednotka.druh">

@@ -18,7 +18,7 @@
 
     <script src="lib/jquery/jquery-1.11.0.min.js"></script>
     <script src="lib/underscore/underscore.js"></script>
-
+	
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -47,6 +47,8 @@
     <script src="js/directives.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/services.js"></script>
+	<script type="text/javascript" src="http://api4.mapy.cz/loader.js"></script>
+    <script type="text/javascript">Loader.load();</script>
 
 <%- js %>
 
@@ -54,6 +56,7 @@
 <body>
 
 <div ng-view class="root"></div>
+
 
 </body>
 </html>
