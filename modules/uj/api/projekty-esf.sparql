@@ -1,0 +1,52 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+PREFIX funds: <http://linked.opendata.cz/ontology/domain/mmr/funds/>
+PREFIX mfcr: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
+PREFIX govr: <http://linked.opendata.cz/ontology/domain/seznam.gov.cz/rejstriky/>
+
+PREFIX app: <http://linked.opendata.cz/mfcr/ontology/application/>
+
+PREFIX resource: <{{"param": "resource"}}>
+
+CONSTRUCT {
+
+  ?rProjekt a foaf:Project ;
+    dcterms:title ?tProjekt ;
+    app:allocationDate ?allocationDate ;
+    app:allocatedPayment ?allocatedPaymentValue ;
+    app:totalAmountPaid ?totalAmountPaidValue .
+
+} WHERE {
+
+  {
+    SELECT DISTINCT ?rProjekt ?tProjekt ?allocatedPayment ?allocationDate
+    WHERE {  
+      ?rUjv a mfcr:UcetniJednotka ;
+        mfcr:versionOf resource: ;
+        owl:sameAs ?rBe .
+    
+      ?rBe funds:project ?rProjekt .
+
+      ?rProjekt dcterms:title ?tProjekt ;
+        funds:allocatedPayment ?allocatedPayment .
+
+      ?allocatedPayment
+        funds:allocationDate ?allocationDate .
+
+    }
+    ORDER BY DESC(?allocationDate)
+	LIMIT {{"param" : "limit", "default":"5"}}
+	OFFSET {{"param" : "offset", "default":"0"}}
+  }
+
+  ?rProjekt 
+    funds:status ?status_resource ;
+    funds:allocatedPayment ?allocatedPayment ;
+    funds:totalAmountPaid ?totalAmountPaid .
+    
+  ?allocatedPayment gr:hasCurrencyValue ?allocatedPaymentValue .
+    
+  ?totalAmountPaid gr:hasCurrencyValue ?totalAmountPaidValue .
+  
+}
