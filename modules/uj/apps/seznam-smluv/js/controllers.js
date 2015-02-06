@@ -19,7 +19,11 @@
             this.update = function() {
                 $scope.datasource.revision++;
             };
-
+			
+            $scope.isEmpty = function() {
+                return angular.isDefined($scope.smlouvy) && $scope.smlouvy.length == 0;
+            };
+			
             AppService.init($scope, ['resource'], this.update);
         }]);
 })();

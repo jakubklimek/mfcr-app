@@ -1,6 +1,6 @@
 <div ng-controller="SeznamSmluvController" sidebar-app heading="Smlouvy">
 
-     <table class="table">
+     <table class="table" ng-hide="isLoading || isEmpty()">
         <tr>
             <th>Notation</th>
             <th>PriceVAT</th>
@@ -11,7 +11,9 @@
         </tr>
     </table>
 
-	<div datapager source="datasource" target="smlouvy" items-per-page="10" hide-controls="false"></div> 
+	<div datapager source="datasource" target="smlouvy" items-per-page="10" hide-controls="isLoading || isEmpty()"></div> 
+
+	<div ng-show="!isLoading && isEmpty()">Nejsou známy</div>
 
     <div ng-show="isLoading" spinner-bar></div>
 </div>

@@ -5,7 +5,7 @@
         </div>
     </div>-->
 
-    <div ng-hide="isLoading">
+    <div ng-hide="isLoading || isEmpty()">
      <table class="table">
         <tr>
             <th>Položka</th>
@@ -19,6 +19,8 @@
         </tr>
      </table>
 	</div>
+
+	<div ng-show="!isLoading && isEmpty()">Nejsou známy</div>
 
     <div ng-show="isLoading" spinner-bar></div>
 </div>

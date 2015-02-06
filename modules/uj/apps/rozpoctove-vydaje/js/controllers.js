@@ -10,6 +10,10 @@
                         $scope.vydaje = data["@graph"];
                     });
             };
+			
+            $scope.isEmpty = function() {
+                return angular.isDefined($scope.vydaje) && $scope.vydaje.length == 0;
+            };
 
             AppService.init($scope, ['resource'], this.update);
         }]);

@@ -16,6 +16,11 @@
                 revision: 0
             };
 
+			
+            $scope.isEmpty = function() {
+                return angular.isDefined($scope.projekty) && $scope.projekty.length == 0;
+            };
+			
             this.update = function() {
                 $scope.datasource.revision++;
             };

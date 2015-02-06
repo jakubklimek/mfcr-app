@@ -10,7 +10,11 @@
                         $scope.uradovny = data["@graph"][0].hasPOS;
                     });
             };
-
+			
+			$scope.isEmpty = function() {
+                return $scope.uradovny.length == 0;
+            };
+			
             AppService.init($scope, ['resource'], this.update);
         }]);
 })();

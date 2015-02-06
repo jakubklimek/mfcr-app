@@ -20,6 +20,10 @@
                 $scope.datasource.revision++;
             };
 
+            $scope.isEmpty = function() {
+                return angular.isDefined($scope.zakazky) && $scope.zakazky.length == 0;
+            };
+
             AppService.init($scope, ['resource'], this.update);
         }]);
 })();

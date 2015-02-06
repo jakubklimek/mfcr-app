@@ -1,11 +1,11 @@
 <div ng-controller="ProjektyEsfController" sidebar-app heading="Projekty ESF">
 
-     <table class="table">
+     <table class="table" ng-hide="isEmpty()">
         <tr>
             <th>Title</th>
             <th>Total</th>
-            <th>Allocated</th>
             <th>Date</th>
+            <th>Allocated</th>
         </tr>
         <tr ng-repeat="projekt in projekty ">
             <td nowrap>{{ projekt['title'] }}</a></td>
@@ -15,7 +15,9 @@
         </tr>
     </table>
 
-	<div datapager source="datasource" target="projekty" items-per-page="10" hide-controls="false"></div> 
+	<div ng-show="!isLoading && isEmpty()">Žádné projekty</div>
+	
+	<div datapager source="datasource" target="projekty" items-per-page="10" hide-controls="isLoading || isEmpty()"></div> 
 
     <div ng-show="isLoading" spinner-bar></div>
 </div>
