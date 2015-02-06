@@ -1,24 +1,14 @@
 <div ng-controller="UradovnyController" sidebar-app heading="Úřadovny">
 
     <div ng-hide="isLoading || isEmpty()">
-     <table class="table">
-        <tr>
-            <th>Adresa</th>
-            <th>Výtah</th>
-            <th>Podlaží</th>
-            <th>Otevírací dny</th>
-        </tr>
-        <tr ng-repeat="uradovna in uradovny | orderBy: predicate : reverse">
-            <td nowrap>{{ uradovna.address }}</td>
-            <td nowrap>{{ uradovna.stavebniObjekt[0].vybaveniVytahem[0].prefLabel }}</td>
-            <td nowrap>{{ uradovna.stavebniObjekt[0].pocetPodlazi }}</td>
-            <td nowrap>
-				<span ng-repeat="hodiny in uradovna.openingHoursSpecification">
-					{{hodiny.dayOfWeek.substring(33)}}
-				</span>
-			</td>
-        </tr>
-     </table>
+		<div ng-repeat="uradovna in uradovny">
+			<h5>{{ uradovna.address }}</h5>
+			<ul>
+				<li>Výtah: {{ uradovna.stavebniObjekt[0].vybaveniVytahem[0].prefLabel }}</li>
+				<li ng-hide="uradovna.stavebniObjekt[0].pocetPodlazi == 0">{{ uradovna.stavebniObjekt[0].pocetPodlazi }} podlaží</li>
+			</ul>
+			<a class="btn btn-primary" click module="uj" application="uradovny-main" resource="{{ resource }}">Detaily</a>
+		</div>
 	</div>
 
 	<div ng-hide="isLoading || !isEmpty()">Nejsou známy</div>
