@@ -1,0 +1,5 @@
+{
+    "title": "Úřadovny",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["main"]
+}

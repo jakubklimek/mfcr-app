@@ -1,0 +1,35 @@
+<div ng-controller="UradovnyMainController" main-app heading="Úřadovny {{ujLabel}}">
+	<div app-bar>
+        <div class="navbar-brand">
+            <a click module="uj" application="detail" resource="{{ resource }}">{{ujLabel}}</a> - Úřadovny
+		</div>
+    </div>
+	
+    <div ng-hide="isLoading || isEmpty()">
+     
+	 <ul>
+		<li ng-repeat="uradovna in uradovny">
+			<dl>
+				<dd>Adresa</dd>
+				<dt>{{ uradovna.address }}</dt>
+				<dd>Výtah</dd>
+				<dt>{{ uradovna.stavebniObjekt[0].vybaveniVytahem[0].prefLabel }}</dt>
+				<dd>Podlaží</dd>
+				<dt>{{ uradovna.stavebniObjekt[0].pocetPodlazi }}</dt>
+				<dd>Otevírací dny</dd>
+				<dt>
+					<ul>
+						<li ng-repeat="den in uradovna.openingHoursSpecification">
+							{{mapDay(den.dayOfWeek.substring(33))}}: Od: {{den.opens.substring(0,5)}} Do: {{den.closes.substring(0,5)}}
+						</li>
+					</ul>
+				</dt>
+			</dl>
+		</li>
+	 </ul>
+	</div>
+
+	<div ng-hide="isLoading || !isEmpty()">Nejsou známy</div>
+
+    <div ng-show="isLoading" spinner-bar></div>
+</div>
