@@ -11,8 +11,8 @@
                     });
             };
 			
-			$scope.isEmpty = function() {
-                return $scope.uradovny.length == 0;
+            $scope.isEmpty = function() {
+                return !angular.isDefined($scope.uradovny) || $scope.uradovny.length == 0;
             };
 			
             AppService.init($scope, ['resource'], this.update);
