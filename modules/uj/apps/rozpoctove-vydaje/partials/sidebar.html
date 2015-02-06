@@ -13,9 +13,9 @@
             <th>Výsledek</th>
         </tr>
         <tr ng-repeat="vydaj in vydaje | orderBy: predicate : reverse">
-            <td nowrap>{{ vydaj['polozka'][0].prefLabel }}</td>
-            <td nowrap>{{ vydaj['refPeriod'].substring(80) }}</td>
-            <td nowrap>{{ vydaj['vysledek'] }}</td>
+            <td>{{ vydaj['polozka'][0].prefLabel }}</td>
+            <td>{{ vydaj['refPeriod'].substring(80) }}</td>
+            <td>{{ vydaj['vysledek'] }}</td>
         </tr>
      </table>
 	</div>

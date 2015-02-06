@@ -1,17 +1,14 @@
 <div ng-controller="SeznamSmluvController" sidebar-app heading="Smlouvy">
 
-     <table class="table" ng-hide="isLoading || isEmpty()">
-        <tr>
-            <th>Notation</th>
-            <th>PriceVAT</th>
-        </tr>
-        <tr ng-repeat="smlouva in smlouvy | orderBy: predicate : reverse">
-            <td nowrap><a click module="uj" application="smlouva-detail" resource="{{ smlouva['@id'] }}">{{ smlouva['notation'] }}</a></td>
-            <td nowrap>{{ smlouva['price'][0].currencyValue }}</td>
-        </tr>
-    </table>
+	 <div ng-repeat="smlouva in smlouvy">
+		<h5><a href="{{smlouva['@id']}}" target="_blank">{{ smlouva.subject }}</a></h5>
+		<dl>
+			<dt>Částka</dt>
+            <dd>{{ smlouva.price[0].currencyValue}} Kč</dd>
+		</dl>
+    </div>
 
-	<div datapager source="datasource" target="smlouvy" items-per-page="10" hide-controls="isLoading || isEmpty()"></div> 
+	<div datapager source="datasource" target="smlouvy" items-per-page="2" hide-controls="isLoading || isEmpty()"></div> 
 
 	<div ng-show="!isLoading && isEmpty()">Nejsou známy</div>
 

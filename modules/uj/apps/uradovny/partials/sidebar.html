@@ -2,13 +2,13 @@
 
     <div ng-hide="isLoading || isEmpty()">
 		<div ng-repeat="uradovna in uradovny">
-			<h5>{{ uradovna.address }}</h5>
+			<h5><a href="http://internal.opendata.cz:8890/describe/?url={{uradovna['@id']}}" target="_blank">{{ uradovna.address }}</a></h5>
 			<ul>
 				<li>Výtah: {{ uradovna.stavebniObjekt[0].vybaveniVytahem[0].prefLabel }}</li>
 				<li ng-hide="uradovna.stavebniObjekt[0].pocetPodlazi == 0">{{ uradovna.stavebniObjekt[0].pocetPodlazi }} podlaží</li>
 			</ul>
-			<a class="btn btn-primary" click module="uj" application="uradovny-main" resource="{{ resource }}">Detaily</a>
 		</div>
+		<a class="btn btn-primary" click module="uj" application="uradovny-main" resource="{{ resource }}">Detaily</a>	
 	</div>
 
 	<div ng-hide="isLoading || !isEmpty()">Nejsou známy</div>

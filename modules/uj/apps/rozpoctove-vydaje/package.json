@@ -1,5 +1,6 @@
 {
     "title": "Rozpočtové výdaje",
     "datatypes": ["mfcr:UcetniJednotka"],
-    "views": ["sidebar"]
+    "views": ["sidebar"],
+	"priority": -1000
 }

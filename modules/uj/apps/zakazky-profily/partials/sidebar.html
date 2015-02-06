@@ -1,21 +1,18 @@
 <div ng-controller="ZakazkyProfilyController" sidebar-app heading="Zakázky (profily)">
 
-     <table class="table" ng-hide="isLoading || isEmpty()">
-        <tr>
-            <th>Title</th>
-            <th>PriceNoVAT</th>
-            <th>PriceVAT</th>
-            <th>Supplier</th>
-        </tr>
-        <tr ng-repeat="zakazka in zakazky ">
-            <td nowrap>{{ zakazka.title }}</a></td>
-            <td nowrap>{{ zakazka.awardedTender[0].priceNoVAT}}</td>
-            <td nowrap>{{ zakazka.awardedTender[0].priceVAT}}</td>
-            <td nowrap>{{ zakazka.awardedTender[0].supplier[0].title}}</td>
-        </tr>
-    </table>
+	 <div ng-repeat="zakazka in zakazky">
+		<h5><a href="http://internal.opendata.cz:8890/describe/?url={{zakazka['@id']}}" target="_blank">{{ zakazka.title }}</a></h5>
+		<dl>
+			<dt>Dodavatel</dt>
+            <dd>{{ zakazka.awardedTender[0].supplier[0].title}}</dd>
+			<dt>Bez DPH</dt>
+            <dd>{{ zakazka.awardedTender[0].priceNoVAT}} Kč</dd>
+			<dt>s DPH</dt>
+            <dd>{{ zakazka.awardedTender[0].priceVAT}} Kč</dd>
+		</dl>
+    </div>
 
-	<div datapager source="datasource" target="zakazky" items-per-page="10" hide-controls="isLoading || isEmpty()"></div> 
+	<div datapager source="datasource" target="zakazky" items-per-page="2" hide-controls="isLoading || isEmpty()"></div> 
 
     <div ng-hide="isLoading || !isEmpty()">Nejsou známy</div>
 	
