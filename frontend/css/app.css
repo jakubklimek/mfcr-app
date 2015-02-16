@@ -5,3 +5,5 @@ body {
 .popover {
     width: 300px;
 }
+
+.angular-google-map-container { height: 300px; }

@@ -12,7 +12,8 @@
         'duScroll',
         'appControllers',
         'appDirectives',
-        'appFilters'
+        'appFilters',
+		'uiGmapgoogle-maps'
     ])
 
     /**
@@ -76,7 +77,19 @@
         .config(["$tooltipProvider", function ($tooltipProvider) {
             $tooltipProvider.setTriggers({ 'show': 'mouseleave' });
         }])
-
+		
+	/**
+	 * Google Maps
+	 */
+		
+		.config(function(uiGmapGoogleMapApiProvider) {
+			uiGmapGoogleMapApiProvider.configure({
+				key: 'vYMhHGEBnJA4E0V6TOo_KxqR',
+				v: '3.17',
+				libraries: 'weather,geometry,visualization'
+			});
+		})
+		
     /**
      * RootScope events processing
      */
