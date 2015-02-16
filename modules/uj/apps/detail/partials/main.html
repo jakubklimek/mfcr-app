@@ -8,8 +8,8 @@
     <div ng-hide="isLoading">
         <h3>Adresa</h3>
 		<p>{{ucetniJednotka.adresa}}</p>
-		<ui-gmap-google-map center='map.center' zoom='map.zoom'>
-			<ui-gmap-marker coords="marker.coords" options="marker.options" idkey="marker.id">
+		<ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events">
+			<ui-gmap-marker coords="marker.coords" idkey="marker.id" options="marker.options">
 			</ui-gmap-marker>
 		</ui-gmap-google-map>
         <h3>Druh</h3>

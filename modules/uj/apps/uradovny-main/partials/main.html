@@ -6,7 +6,12 @@
     </div>
 	
     <div ng-hide="isLoading || isEmpty()">
-     
+
+	<ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events">
+		<ui-gmap-marker ng-repeat="m in markers" coords="m.coords" options="m.options" idkey="m.id">
+		</ui-gmap-marker>
+	</ui-gmap-google-map>
+     <br/>
 	 <ul>
 		<li ng-repeat="uradovna in uradovny">
 			<dl>

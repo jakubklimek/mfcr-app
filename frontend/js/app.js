@@ -82,13 +82,13 @@
 	 * Google Maps
 	 */
 		
-		.config(function(uiGmapGoogleMapApiProvider) {
+/*		.config(function(uiGmapGoogleMapApiProvider) {
 			uiGmapGoogleMapApiProvider.configure({
-				key: 'vYMhHGEBnJA4E0V6TOo_KxqR',
+				//key: 'vYMhHGEBnJA4E0V6TOo_KxqR',
 				v: '3.17',
 				libraries: 'weather,geometry,visualization'
 			});
-		})
+		})*/
 		
     /**
      * RootScope events processing
