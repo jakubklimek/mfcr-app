@@ -1,7 +1,7 @@
 <div ng-controller="UcetniJednotkaController" main-app>
 	<div app-bar>
         <div class="navbar-brand">
-            Účetní jednotka {{ucetniJednotka.prefLabel}}
+            Účetní jednotka <a target="_blank" href="http://internal.opendata.cz:8890/describe/?url={{ucetniJednotka['@id']}}">{{ucetniJednotka.prefLabel}}</a>
         </div>
     </div>
 
@@ -15,7 +15,7 @@
         <h3>Druh</h3>
         <ul>
             <li ng-repeat="d in ucetniJednotka.druh">
-                {{d.prefLabel | join}}
+                <a click type="mfcr:DruhUcetniJednotky" resource="{{d['@id']}}">{{d.prefLabel | join}}</a>
             </li>
         </ul>
         <h3>Poddruh</h3>

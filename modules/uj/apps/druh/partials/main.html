@@ -1,0 +1,20 @@
+<div ng-controller="DruhUcetniJednotkyController" main-app>
+	<div app-bar>
+        <div class="navbar-brand">
+            Druh účetní jednotky: <a target="_blank" href="http://internal.opendata.cz:8890/describe/?url={{druh['@id']}}">{{druh.prefLabel}}</a>
+        </div>
+    </div>
+
+	<ul>
+		<li ng-repeat="uj in ujs">
+			<a click type="mfcr:UcetniJednotka" resource="{{uj['@id']}}">{{ uj.prefLabel }}</a>
+		</li>
+	</ul>
+	
+	<div datapager source="datasource" target="ujs" items-per-page="20" hide-controls="isLoading || isEmpty()"></div> 
+
+	<div ng-show="!isLoading && isEmpty()">Nejsou známy</div>
+
+    <div ng-show="isLoading" spinner-bar></div>
+
+</div>

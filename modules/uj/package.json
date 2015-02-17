@@ -19,6 +19,8 @@
         "projekty-esf": { "resource": "", "limit": "10", "offset":"0"},
         "zakazky-profily": { "resource": "", "limit": "10", "offset":"0"},
 		"rozpoctove-vydaje": { "resource": ""},
-		"uradovny": { "resource": ""}
+		"uradovny": { "resource": ""},
+		"druh-uj": { "resource": "", "limit": "10", "offset":"0"},
+		"poddruh-uj": { "resource": "", "limit": "10", "offset":"0"}
     }
 }

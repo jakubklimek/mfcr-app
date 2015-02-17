@@ -1,0 +1,6 @@
+{
+    "title": "Poddruh účetní jednotky",
+    "datatypes": ["mfcr:PoddruhUcetniJednotky"],
+    "views": ["main"],
+	"priority": 1000
+}

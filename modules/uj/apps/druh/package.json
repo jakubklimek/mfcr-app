@@ -1,0 +1,6 @@
+{
+    "title": "Druh účetní jednotky",
+    "datatypes": ["mfcr:DruhUcetniJednotky"],
+    "views": ["main"],
+	"priority": 1000
+}

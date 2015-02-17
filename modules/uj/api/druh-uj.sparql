@@ -1,0 +1,43 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+PREFIX mfcr: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
+PREFIX app: <http://linked.opendata.cz/mfcr/ontology/application/>
+
+PREFIX resource: <{{"param": "resource"}}>
+
+CONSTRUCT {
+
+    resource: a mfcr:DruhUcetniJednotky ;
+		skos:prefLabel ?dujName ;
+		app:uj ?uj
+	.
+  
+	?uj skos:prefLabel ?ujLabel 
+	.
+
+} WHERE {
+
+  {
+    SELECT DISTINCT ?uj ?ujLabel
+    WHERE {  
+	resource: a mfcr:DruhUcetniJednotky ;
+		^mfcr:druhUcetniJednotky ?ujv 
+	.
+  
+    ?ujv skos:prefLabel ?ujLabel ;
+       mfcr:validTo ?ujValidTo ;
+	   mfcr:versionOf ?uj .
+	
+	FILTER (NOW() < ?ujValidTo)
+
+	}
+    ORDER BY ASC(?ujLabel)
+	LIMIT {{"param" : "limit", "default":"5"}}
+	OFFSET {{"param" : "offset", "default":"0"}}
+  }
+
+    resource: a mfcr:DruhUcetniJednotky ;
+		skos:prefLabel ?dujName 
+	.
+
+}
