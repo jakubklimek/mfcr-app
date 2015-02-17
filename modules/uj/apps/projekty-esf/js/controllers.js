@@ -17,7 +17,11 @@
             };
 
 			
-            $scope.isEmpty = function() {
+            $scope.encode = function(input) {
+				return encodeURIComponent(input);
+			};
+			
+			$scope.isEmpty = function() {
                 return angular.isDefined($scope.projekty) && $scope.projekty.length == 0;
             };
 			

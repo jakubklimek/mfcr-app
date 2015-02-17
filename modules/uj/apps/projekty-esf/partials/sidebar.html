@@ -1,7 +1,7 @@
 <div ng-controller="ProjektyEsfController" sidebar-app heading="Projekty ESF">
 
 	 <div ng-repeat="projekt in projekty">
-		<h5><a href="http://internal.opendata.cz:8890/describe/?url={{projekt['@id']}}" target="_blank">{{ projekt['title'] }}</a></h5>
+		<h5><a href="http://internal.opendata.cz:8890/describe/?url={{ encode(projekt['@id']) }}" target="_blank">{{ projekt['title'] }}</a></h5>
 		<dl>
 			<dt>Proplaceno</dt>
             <dd>{{ projekt['totalAmountPaid']}} Kč</dd>
