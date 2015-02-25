@@ -1,4 +1,4 @@
-<div ng-controller="ProjektyEsfController" sidebar-app heading="Projekty ESF">
+<div ng-controller="ProjektyEsfController" sidebar-app heading="Projekty ESF" set-open="false">
 
 	 <div ng-repeat="projekt in projekty">
 		<h5><a href="http://internal.opendata.cz:8890/describe/?url={{ encode(projekt['@id']) }}" target="_blank">{{ projekt['title'] }}</a></h5>

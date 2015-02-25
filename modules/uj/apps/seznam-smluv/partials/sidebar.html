@@ -1,4 +1,4 @@
-<div ng-controller="SeznamSmluvController" sidebar-app heading="Smlouvy">
+<div ng-controller="SeznamSmluvController" sidebar-app heading="Smlouvy" set-open="false">
 
 	 <div ng-repeat="smlouva in smlouvy">
 		<h5><a href="{{smlouva['@id']}}" target="_blank">{{ smlouva.subject }}</a></h5>

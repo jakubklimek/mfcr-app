@@ -1,4 +1,4 @@
-<div ng-controller="ZakazkyProfilyController" sidebar-app heading="Zakázky (profily)">
+<div ng-controller="ZakazkyProfilyController" sidebar-app heading="Zakázky (profily)" set-open="false">
 
 	 <div ng-repeat="zakazka in zakazky">
 		<h5><a href="http://internal.opendata.cz:8890/describe/?url={{zakazka['@id']}}" target="_blank">{{ zakazka.title }}</a></h5>
