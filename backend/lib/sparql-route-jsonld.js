@@ -101,6 +101,22 @@ SparqlRouteJSONLD.prototype.getPrefixedProperties = function() {
 SparqlRouteJSONLD.prototype.getSendWarnings = function() {
     return settings.options["sparql"]["jsonld"]["send-warnings"];
 };
+
+// Converts @type properties to string - Virtuoso bug fix
+SparqlRouteJSONLD.prototype.fixRDFType = function(response) {
+    if (!_.has(response, "@graph"))
+        return response;
+
+    var graph = response["@graph"];
+    _.each(response["@graph"], function(item) {
+        if (_.has(item, "@type")) {
+            var type = item["@type"];
+            if (_.isArray(type) && type[0] != null && _.isObject(type[0]) && _.has(type[0], "@id"))
+                item["@type"] = type[0]["@id"];
+        }
+    });
+    return response;
+};
 // Applies context to JSON-LD Virtuoso response using JSONLD library
 SparqlRouteJSONLD.prototype.applyContext = function(response) {
     var p = jsonld.promises();
@@ -321,6 +337,7 @@ SparqlRouteJSONLD.prototype.handleResponse = function(responseString, res, reque
             return r;
         })
         .then(function(r) { return JSON.parse(responseString); })
+        .then(function(r) { return self.fixRDFType(r); })
         .then(function(r) { return self.applyContext(r); })
         .then(function(r) { return self.convertDates(r); })
         .then(function(r) { return self.reconstructComplexObjects(r); })
