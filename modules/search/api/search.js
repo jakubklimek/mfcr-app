@@ -52,6 +52,10 @@ module.exports = function(routeParams) {
 
     route.getContext = function() {
         return {
+            "type": {
+                "@id": "http://TYPE",
+                "@type": "@id"
+            },
             "text" : "http://TEXT",
             "score" : "http://SCORE",
             "label" : "http://LABEL"
@@ -70,6 +74,7 @@ module.exports = function(routeParams) {
                 }
             }
             item["score"] = Number(item["score"]);
+            item["@type"] = item["type"];
         });
 
         responseJSON["@graph"] = _.sortBy(responseJSON["@graph"], function(item) { return 100 - item["score"]; });

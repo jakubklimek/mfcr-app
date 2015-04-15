@@ -1,7 +1,7 @@
 {{"param" : "prefixes"}}
 
 CONSTRUCT{
-  ?resource1 rdf:type ?type .
+  ?resource1 <http://TYPE> ?type .
   ?resource1 <http://TEXT> ?text .
   ?resource1 <http://LABEL> ?label .
   ?resource1 <http://SCORE> ?sc .

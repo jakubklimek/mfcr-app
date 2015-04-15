@@ -8,7 +8,10 @@ module.exports = function(routeParams) {
                 "@id": "http://purl.org/dc/terms/title"
             },
             "awardedTender": "http://purl.org/procurement/public-contracts#awardedTender",
-            "status": "http://purl.org/procurement/public-contracts-czech#status",
+            "status": {
+                "@id": "http://purl.org/procurement/public-contracts-czech#status",
+                "@type": "@id"
+            },
             "priceNoVAT": {
                 "@id": "http://linked.opendata.cz/mfcr/ontology/application/priceNoVAT"
             },

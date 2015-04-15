@@ -8,7 +8,10 @@ module.exports = function(routeParams) {
 			"polozka": {
                 "@id": "http://linked.opendata.cz/ontology/mfcr/application/polozka"
             },
-            "refPeriod": "http://linked.opendata.cz/ontology/mfcr/application/refPeriod",
+            "refPeriod": {
+                "@id": "http://linked.opendata.cz/ontology/mfcr/application/refPeriod",
+                "@type": "@id"
+            },
             "vysledek": {
 				"@id": "http://linked.opendata.cz/ontology/mfcr/application/vysledek",
 				"@type": "http://www.w3.org/2001/XMLSchema#decimal"
