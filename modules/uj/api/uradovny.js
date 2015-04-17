@@ -11,10 +11,22 @@ module.exports = function(routeParams) {
 			"address": {
                 "@id": "http://linked.opendata.cz/mfcr/ontology/application/address"
             },
-            "stavebniObjekt": "http://ruian.linked.opendata.cz/ontology/stavebniObjekt",
-			"hasPOS" : "http://schema.org/hasPOS",
-			"geo" : "http://schema.org/geo",
-			"openingHoursSpecification" : "http://schema.org/openingHoursSpecification",
+            "stavebniObjekt": {
+				"@id": "http://ruian.linked.opendata.cz/ontology/stavebniObjekt",
+				"@type": "@id"
+			},
+			"hasPOS" : {
+				"@id": "http://schema.org/hasPOS",
+				"@type": "@id"
+			},
+			"geo" : {
+				"@id": "http://schema.org/geo",
+				"@type": "@id"
+			},
+			"openingHoursSpecification" : {
+				"@id": "http://schema.org/openingHoursSpecification",
+				"@type": "@id"
+			},
 			"closes" : {
 				"@id" : "http://schema.org/closes",
 				"@type" : "http://www.w3.org/2001/XMLSchema#time",
@@ -23,10 +35,16 @@ module.exports = function(routeParams) {
 				"@id" : "http://schema.org/opens",
 				"@type" : "http://www.w3.org/2001/XMLSchema#time",
 			},
-			"dayOfWeek" : "http://schema.org/dayOfWeek",
+			"dayOfWeek" : {
+				"@id" : "http://schema.org/dayOfWeek",
+				"@type": "@id"
+			},
 			"latitude" : "http://schema.org/latitude",
 			"longitude" : "http://schema.org/longitude",
-			"vybaveniVytahem" : "http://ruian.linked.opendata.cz/ontology/vybaveniVytahem",
+			"vybaveniVytahem" : {
+				"@id": "http://ruian.linked.opendata.cz/ontology/vybaveniVytahem",
+				"@type": "@id"
+			},
             "pocetPodlazi": {
 				"@id": "http://ruian.linked.opendata.cz/ontology/pocetPodlazi",
 				"@type": "http://www.w3.org/2001/XMLSchema#integer"

@@ -8,8 +8,15 @@ module.exports = function(routeParams) {
                 "@id": "http://www.w3.org/2004/02/skos/core#prefLabel"
             },
             "adresa": "http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/adresa",
-            "druh": "http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/druhUcetniJednotky",
-            "poddruh": "http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/poddruhUcetniJednotky"
+            "druh": {
+				 "@id": "http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/druhUcetniJednotky",
+				 "@type": "@id"
+			},
+			
+            "poddruh": {
+				"@id": "http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/poddruhUcetniJednotky",
+				"@type": "@id"
+			}
         }
     };
 

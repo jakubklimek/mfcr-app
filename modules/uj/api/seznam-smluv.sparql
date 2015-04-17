@@ -12,7 +12,7 @@ CONSTRUCT {
   ?smlouva skos:notation ?smlouvaNotation ;
     dcterms:issued ?smlouvaIssued ;
     dcterms:subject ?smlouvaSubject ;
-    gr:priceSpecification ?smlouvaPrice .
+    gr:hasPriceSpecification ?smlouvaPrice .
   
   ?smlouvaPrice gr:hasCurrency ?smlouvaPriceCurrency ;
     gr:valueAddedTaxIncluded ?smlouvaPriceVATIncluded ;

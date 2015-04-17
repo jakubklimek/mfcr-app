@@ -7,23 +7,28 @@ module.exports = function(routeParams) {
             "title": {
                 "@id": "http://purl.org/dc/terms/title"
             },
-            "awardedTender": "http://purl.org/procurement/public-contracts#awardedTender",
+            "awardedTender": {
+				"@id": "http://purl.org/procurement/public-contracts#awardedTender",
+				"@type": "@id"
+			},
             "status": {
                 "@id": "http://purl.org/procurement/public-contracts-czech#status",
                 "@type": "@id"
             },
             "priceNoVAT": {
-                "@id": "http://linked.opendata.cz/mfcr/ontology/application/priceNoVAT"
+                "@id": "http://linked.opendata.cz/mfcr/ontology/application/priceNoVAT",
+				"@type": "http://www.w3.org/2001/XMLSchema#integer"
             },
             "priceVAT": {
-                "@id": "http://linked.opendata.cz/mfcr/ontology/application/priceVAT"
+                "@id": "http://linked.opendata.cz/mfcr/ontology/application/priceVAT",
+				"@type": "http://www.w3.org/2001/XMLSchema#decimal"
             },
 			"currency" : "http://purl.org/goodrelations/v1#hasCurrency",
             "supplier": {
-                "@id": "http://purl.org/procurement/public-contracts#supplier"
+                "@id": "http://purl.org/procurement/public-contracts#supplier",
+				"@type": "@id"
             },
 			"vatIncluded" : "http://purl.org/goodrelations/v1#valueAddedTaxIncluded",
-			"smlouvy" : "http://linked.opendata.cz/ontology/domain/seznam.gov.cz/rejstriky/smlouva"
         }
     };
 

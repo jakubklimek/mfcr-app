@@ -4,9 +4,12 @@ module.exports = function(routeParams) {
 	//route.getApplyModel = function() { return false ; } ;
     route.getContext = function() {
         return {
-            "prefLabel": "http://www.w3.org/2004/02/skos/core#prefLabel",
+            "prefLabel": {
+			 "@id" : "http://www.w3.org/2004/02/skos/core#prefLabel"
+			},
 			"polozka": {
-                "@id": "http://linked.opendata.cz/ontology/mfcr/application/polozka"
+                "@id": "http://linked.opendata.cz/ontology/mfcr/application/polozka",
+				"@type": "@id"
             },
             "refPeriod": {
                 "@id": "http://linked.opendata.cz/ontology/mfcr/application/refPeriod",

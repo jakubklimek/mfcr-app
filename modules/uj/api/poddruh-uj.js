@@ -7,7 +7,10 @@ module.exports = function(routeParams) {
             "prefLabel": {
                 "@id": "http://www.w3.org/2004/02/skos/core#prefLabel"
             },
-            "uj": "http://linked.opendata.cz/mfcr/ontology/application/uj"
+            "uj": {
+				"@id": "http://linked.opendata.cz/mfcr/ontology/application/uj",
+				"@type": "@id"
+			}
         }
     };
 

@@ -5,6 +5,7 @@ PREFIX s: <http://schema.org/>
 PREFIX ruian: <http://ruian.linked.opendata.cz/ontology/>
 PREFIX ovm: <http://linked.opendata.cz/ontology/domain/seznam.gov.cz/ovm/>
 PREFIX cis: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
+PREFIX ruianlink: <http://ruian.linked.opendata.cz/ontology/links/>
 
 PREFIX resource: <{{"param": "resource"}}>
 
@@ -58,7 +59,7 @@ CONSTRUCT {
     s:opens ?vUradovnaOpeningHoursSpecificationOpens ;
     s:closes ?vUradovnaOpeningHoursSpecificationCloses .
   
-  ?rUradovnaAdresa rdfs:seeAlso ?rUradovnaAdresniMisto .
+  ?rUradovnaAdresa ruianlink:adresni-misto ?rUradovnaAdresniMisto .
 
   ?rUradovnaAdresniMisto
     ruian:stavebniObjekt ?rUradovnaStavebniObjekt ;

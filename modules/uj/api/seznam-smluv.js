@@ -8,18 +8,29 @@ module.exports = function(routeParams) {
                 "@id": "http://purl.org/dc/terms/subject"
             },
             "notation": "http://www.w3.org/2004/02/skos/core#notation",
-            "price": "http://purl.org/goodrelations/v1#priceSpecification",
+            "price": {
+				"@id": "http://purl.org/goodrelations/v1#hasPriceSpecification",
+				"@type": "@id"
+			},
             "issued": {
                 "@id": "http://purl.org/dc/terms/issued",
 				"@type": "http://www.w3.org/2001/XMLSchema#date"
             },
-			"currency" : "http://purl.org/goodrelations/v1#hasCurrency",
+			"currency" : {
+				"@id": "http://purl.org/goodrelations/v1#hasCurrency"
+			},
             "currencyValue": {
                 "@id": "http://purl.org/goodrelations/v1#hasCurrencyValue",
 				"@type": "http://www.w3.org/2001/XMLSchema#decimal"
             },
-			"vatIncluded" : "http://purl.org/goodrelations/v1#valueAddedTaxIncluded",
-			"smlouvy" : "http://linked.opendata.cz/ontology/domain/seznam.gov.cz/rejstriky/smlouva"
+			"vatIncluded" : {
+				"@id": "http://purl.org/goodrelations/v1#valueAddedTaxIncluded",
+				"@type": "http://www.w3.org/2001/XMLSchema#boolean"
+			},
+			"smlouvy" : {
+					"@id": "http://linked.opendata.cz/ontology/domain/seznam.gov.cz/rejstriky/smlouva",
+					"@type" : "@id"
+			}
         }
     };
 
@@ -38,7 +49,7 @@ module.exports = function(routeParams) {
 				"notation": ["string", ""],
 				"issued": ["string", ""],
 				"price": [{ "@id": ["string", ""],
-							"vatIncluded":["string",""],
+							"vatIncluded":["number",""],
 							"currency": ["string", ""],
 							"currencyValue": ["string", ""]
 						  }, []
