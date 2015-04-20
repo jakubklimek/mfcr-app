@@ -14,13 +14,13 @@ CONSTRUCT {
 
   ?rZakazka a pc:Contract ;
     dcterms:title ?tZakazka ;
-    pc:awardedTender ?rAwardedTender ;
-    pccz:status ?statusZakazka .
+    pc:awardedTender ?rAwardedTender .
 
   ?rAwardedTender a pc:Tender ;
     pc:supplier ?rSupplier ;
     app:priceVAT ?vVATPrice ;
-    app:priceNoVAT ?vNoVATPrice .
+    app:priceNoVAT ?vNoVATPrice ;
+    app:ePriceNoVAT ?vENoVATPrice .
 
   ?rSupplier a gr:BusinessEntity ;
     gr:legalName ?tSupplier .
@@ -34,10 +34,10 @@ CONSTRUCT {
         mfcr:versionOf resource: ;
         owl:sameAs ?rBe .
     
-      GRAPH <http://linked.opendata.cz/resource/dataset/buyer-profiles/cz/contracts> {
-	    ?rZakazka pc:contractingAuthority ?rBe ;
+    GRAPH <http://linked.opendata.cz/resource/dataset/isvz/zakazky> {
+      ?rZakazka pc:contractingAuthority ?rBe ;
         dcterms:title ?tZakazka .
-	  }
+    }
 
     }
     ORDER BY ?tZakazka
@@ -54,23 +54,25 @@ CONSTRUCT {
     }
     
     OPTIONAL {{
-      ?rAwardedTender pc:offeredPrice ?rNoVATPrice .
+      ?rAwardedTender pc:actualPrice ?rNoVATPrice .
       ?rNoVATPrice
         gr:valueAddedTaxIncluded ?rNoVATPriceIncluded ;
         gr:hasCurrencyValue ?vNoVATPrice.
       FILTER(?rNoVATPriceIncluded = false)
     } UNION {
-      ?rAwardedTender pc:offeredPrice ?rVATPrice .
+      ?rAwardedTender pc:actualPrice ?rVATPrice .
       ?rVATPrice
         gr:valueAddedTaxIncluded ?rVATPriceIncluded  ;
         gr:hasCurrencyValue ?vVATPrice.
       FILTER(?rVATPriceIncluded = true)
     }}
 
-  } UNION {
-    ?rZakazka pccz:status ?statusZakazka .
-  } UNION {
-    ?rZakazka pccz:limit ?limitZakazka .
-  }
+    OPTIONAL {
+      ?rAwardedTender pc:estimatedPrice ?rENoVATPrice .
+      ?rENoVATPrice
+        gr:hasCurrencyValue ?vENoVATPrice.
+    }
+
+  } 
   
 }

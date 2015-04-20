@@ -5,19 +5,20 @@ module.exports = function(routeParams) {
     route.getContext = function() {
         return {
             "title": {
-                "@id": "http://purl.org/dc/terms/title"
+                "@id": "http://purl.org/dc/terms/title",
+				"@language": "cs"
             },
             "awardedTender": {
 				"@id": "http://purl.org/procurement/public-contracts#awardedTender",
 				"@type": "@id"
 			},
-            "status": {
-                "@id": "http://purl.org/procurement/public-contracts-czech#status",
-                "@type": "@id"
-            },
             "priceNoVAT": {
                 "@id": "http://linked.opendata.cz/mfcr/ontology/application/priceNoVAT",
-				"@type": "http://www.w3.org/2001/XMLSchema#integer"
+				"@type": "http://www.w3.org/2001/XMLSchema#decimal"
+            },
+            "ePriceNoVAT": {
+                "@id": "http://linked.opendata.cz/mfcr/ontology/application/ePriceNoVAT",
+				"@type": "http://www.w3.org/2001/XMLSchema#decimal"
             },
             "priceVAT": {
                 "@id": "http://linked.opendata.cz/mfcr/ontology/application/priceVAT",
@@ -45,10 +46,10 @@ module.exports = function(routeParams) {
         return {
 				"@id": ["string", ""],
 				"title": ["string", ""],
-				"status": ["string", ""],
 				"awardedTender": [{ "@id": ["string", ""],
 							"priceNoVAT":["number",""],
 							"priceVAT":["number",""],
+							"ePriceNoVAT":["number",""],
 							"supplier": [{ "@id": ["string", ""],
 								           "legalName": ["string", ""]
 								}, []

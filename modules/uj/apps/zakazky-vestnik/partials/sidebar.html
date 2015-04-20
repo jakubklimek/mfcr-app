@@ -1,4 +1,4 @@
-<div ng-controller="ZakazkyProfilyController" sidebar-app heading="Zakázky (profily)" set-open="false">
+<div ng-controller="ZakazkyVestnikController" sidebar-app heading="Zakázky (věstník)" set-open="false">
 
 	 <div ng-repeat="zakazka in zakazky">
 		<h5><a href="http://internal.opendata.cz:8890/describe/?url={{zakazka['@id']}}" target="_blank">{{ zakazka.title }}</a></h5>
@@ -7,8 +7,10 @@
             <dd><a href="http://internal.opendata.cz:8890/describe/?url={{zakazka.awardedTender[0].supplier[0]['@id']}}" target="_blank">{{ zakazka.awardedTender[0].supplier[0].legalName}}</a></dd>
 			<dt>Bez DPH</dt>
             <dd>{{ zakazka.awardedTender[0].priceNoVAT}} Kč</dd>
-			<dt>s DPH</dt>
+			<dt>S DPH</dt>
             <dd>{{ zakazka.awardedTender[0].priceVAT}} Kč</dd>
+			<dt>Odhad bez DPH</dt>
+            <dd>{{ zakazka.awardedTender[0].ePriceNoVAT}} Kč</dd>
 		</dl>
     </div>
 

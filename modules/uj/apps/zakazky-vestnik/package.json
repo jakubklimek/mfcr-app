@@ -1,0 +1,5 @@
+{
+    "title": "Zakázky (věstník)",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["sidebar"]
+}
