@@ -3,6 +3,7 @@ PREFIX ruian: <http://ruian.linked.opendata.cz/ontology/>
 PREFIX mfcr: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX app: <http://linked.opendata.cz/ontology/mfcr/application/>
+PREFIX s: <http://schema.org/>
 
 PREFIX resource: <{{"param": "resource"}}>
 
@@ -17,6 +18,9 @@ CONSTRUCT {
   ?ujDruh skos:prefLabel ?ujDruhLabel .
 
   ?ujPodDruh skos:prefLabel ?ujPodDruhLabel .
+
+  ?okres skos:prefLabel ?okresLabel .
+
 } WHERE {
 
   ?ujv a mfcr:UcetniJednotka ;
@@ -31,6 +35,8 @@ CONSTRUCT {
   ?ujDruh skos:prefLabel ?ujDruhLabel .
 
   ?ujPodDruh skos:prefLabel ?ujPodDruhLabel .
+  
+  ?okres s:name ?okresLabel .
 
   FILTER (NOW() < ?ujValidTo)
 }

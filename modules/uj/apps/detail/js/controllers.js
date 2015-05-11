@@ -10,7 +10,7 @@
                     .then(function(data) {
                         $scope.ucetniJednotka = data["@graph"][0];
 						geocoder = new google.maps.Geocoder();
-						$scope.vizuri = $sce.trustAsResourceUrl("http://live.payola.cz:29080/api/v1/datacube/custom/33/a23c1dafb7a49d703acfdadaefbf8f1d?view=chart&chartType=column&isPolar=false&dimensionUri=http://linked.opendata.cz/ontology/application/mfcrapp/rozpocty/refArea&valueUri=" + $scope.ucetniJednotka.okres);
+						$scope.vizuri = $sce.trustAsResourceUrl("http://live.payola.cz:29080/api/v1/datacube/custom/33/a23c1dafb7a49d703acfdadaefbf8f1d?view=chart&chartType=column&isPolar=false&dimensionUri=http://linked.opendata.cz/ontology/application/mfcrapp/rozpocty/refArea&valueUri=" + $scope.ucetniJednotka.okres[0]['@id']);
 						$scope.mapsLoaded = false;
 						$scope.marker = [];
 						$scope.map = {
