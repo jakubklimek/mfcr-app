@@ -12,7 +12,10 @@ module.exports = function(routeParams) {
 				 "@id": "http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/druhUcetniJednotky",
 				 "@type": "@id"
 			},
-			
+			"okres": {
+				"@id": "http://linked.opendata.cz/ontology/mfcr/application/okres",
+				"@type": "@id"
+			},
             "poddruh": {
 				"@id": "http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/poddruhUcetniJednotky",
 				"@type": "@id"
@@ -29,7 +32,8 @@ module.exports = function(routeParams) {
             "@id": ["string", ""],
             "prefLabel": ["string", ""],
             "adresa": ["string", {}],
-            "druh": [{  "@id": ["string", ""],
+            "okres": ["string", {}],
+			"druh": [{  "@id": ["string", ""],
 						"prefLabel":["string",""]}, []],
             "poddruh": [{  "@id": ["string", ""],
 							"prefLabel":["string",""]}, []],

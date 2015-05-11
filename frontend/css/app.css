@@ -6,4 +6,8 @@ body {
     width: 300px;
 }
 
-.angular-google-map-container { height: 300px; }
+.angular-google-map-container { height: 25em; }
+.ldvmi { 
+	height: 50em;
+	width: 100%;
+}

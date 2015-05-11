@@ -1,6 +1,8 @@
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-
+PREFIX ruian: <http://ruian.linked.opendata.cz/ontology/>
 PREFIX mfcr: <http://linked.opendata.cz/ontology/domain/mfcr/monitor/ciselniky/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX app: <http://linked.opendata.cz/ontology/mfcr/application/>
 
 PREFIX resource: <{{"param": "resource"}}>
 
@@ -9,6 +11,7 @@ CONSTRUCT {
     skos:prefLabel ?ujName ;
     mfcr:druhUcetniJednotky ?ujDruh;
     mfcr:poddruhUcetniJednotky ?ujPodDruh ;
+	app:okres ?okres ;
     mfcr:adresa ?ujAdresa .
 
   ?ujDruh skos:prefLabel ?ujDruhLabel .
@@ -19,6 +22,7 @@ CONSTRUCT {
   ?ujv a mfcr:UcetniJednotka ;
     mfcr:versionOf resource: ;
     mfcr:validTo ?ujValidTo ;
+	mfcr:nuts/owl:sameAs/^ruian:lau ?okres;
     skos:prefLabel ?ujName ;
     mfcr:druhUcetniJednotky ?ujDruh;
     mfcr:poddruhUcetniJednotky ?ujPodDruh ;
