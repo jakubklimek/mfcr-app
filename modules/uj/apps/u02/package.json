@@ -1,0 +1,6 @@
+{
+    "title": "Podíl EU dotací na (konsolidovaných) příjmech",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["main"],
+	"priority": 899
+}

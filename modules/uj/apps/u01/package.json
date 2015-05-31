@@ -1,0 +1,6 @@
+{
+    "title": "Podíl výdajů na veřejné zakázky na (konsolidovaných) výdajích",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["main"],
+	"priority": 900
+}

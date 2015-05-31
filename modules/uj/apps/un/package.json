@@ -1,0 +1,6 @@
+{
+    "title": "Základní ukazatele - příjmy, výdaje, celkem zakázky, celkem smlouvy",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["main"],
+	"priority": 901
+}

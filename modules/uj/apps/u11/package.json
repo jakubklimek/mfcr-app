@@ -1,0 +1,6 @@
+{
+    "title": "Výdaje sociálních zařízení v okresech/krajích ČR přepočtené na 1 obyvatele",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["main"],
+	"priority": 895
+}

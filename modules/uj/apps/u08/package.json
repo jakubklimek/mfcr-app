@@ -1,0 +1,6 @@
+{
+    "title": "Výdaje základních škol (učilišť, středních odborných škol, gymnázií, mateřských škol) v okresech/krajích ČR přepočtené na 1 obyvatele",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["main"],
+	"priority": 897
+}

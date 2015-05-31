@@ -1,0 +1,14 @@
+<div ng-controller="UcetniJednotkaController" main-app>
+	<div app-bar>
+        <div class="navbar-brand">
+            <a click module="uj" application="detail" resource="{{ resource }}">{{ucetniJednotka.prefLabel}}</a> - Podíl výdajů na veřejné zakázky na (konsolidovaných) výdajích
+		</div>
+    </div>
+
+    <div ng-hide="isLoading">
+		<iframe class="ldvmi" src="{{vizuri}}">&lt;p&gt;Váš prohlížeč nepodporuje iframes.&lt;/p&gt;</iframe>
+</iframe>
+    </div>
+
+    <div ng-show="isLoading" spinner-bar></div>
+</div>

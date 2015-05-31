@@ -1,0 +1,6 @@
+{
+    "title": "Poměr výdajů na školy a školská zařízení na počtu obyvatel vybraného území podle věkové kategorie",
+    "datatypes": ["mfcr:UcetniJednotka"],
+    "views": ["main"],
+	"priority": 898
+}
