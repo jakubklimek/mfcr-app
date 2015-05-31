@@ -2,7 +2,7 @@
 
     angular.module('appControllers')
 
-        .controller('UcetniJednotkaController', ['$scope', '$sce', 'AppService', function($scope, $sce, AppService) {
+        .controller('U11Controller', ['$scope', '$sce', 'AppService', function($scope, $sce, AppService) {
 
             this.update = function() {
 

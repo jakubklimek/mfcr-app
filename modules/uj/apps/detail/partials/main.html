@@ -12,7 +12,8 @@
 			<ui-gmap-marker coords="marker.coords" idkey="marker.id" options="marker.options">
 			</ui-gmap-marker>
 		</ui-gmap-google-map>
-        <dl>
+        <br/>
+		<dl>
 			<dt>Druh účetní jednotky</dt>
             <dd ng-repeat="d in ucetniJednotka.druh">
                 <a click type="mfcr:DruhUcetniJednotky" resource="{{d['@id']}}">{{d.prefLabel | join}}</a>
