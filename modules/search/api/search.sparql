@@ -10,7 +10,7 @@ CONSTRUCT{
 {{"param" : "from"}}
 
 WHERE {
-  SELECT ?resource1 ?type ?text ?label ?sc
+  SELECT DISTINCT ?resource1 ?type ?text ?label ?sc
   WHERE {
     GRAPH ?graph {
     	?resource a ?type .
