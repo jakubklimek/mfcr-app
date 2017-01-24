@@ -9,7 +9,7 @@
                 AppService.getData($scope, 'uj', 'uj-detail', {'resource': $scope.resource})
                     .then(function(data) {
                         $scope.ucetniJednotka = data["@graph"][0];
-						$scope.vizuri = $sce.trustAsResourceUrl("http://live.payola.cz:29080/api/v1/datacube/custom/49/b74f5d8523c719142666b29348256c8e?view=chart&chartType=column&isPolar=false&disableTitle=true&dimensionUri=http://linked.opendata.cz/ontology/application/mfcrapp/rozpocty/ucetniJednotka&valueUri=" + $scope.ucetniJednotka['@id']);
+						$scope.vizuri = $sce.trustAsResourceUrl("http://demo.visualization.linkedpipes.com/api/v1/datacube/custom/209/d54f8d324bf210c1fc120554b89d324?view=chart&chartType=column&isPolar=false&disableTitle=true&dimensionUri=http://linked.opendata.cz/ontology/application/mfcrapp/rozpocty/ucetniJednotka&valueUri=" + $scope.ucetniJednotka['@id']);
 						AppService.setTitle("Účetní jednotka " + $scope.ucetniJednotka["prefLabel"]);
                     });
             };
